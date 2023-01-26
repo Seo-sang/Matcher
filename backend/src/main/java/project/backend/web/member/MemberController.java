@@ -24,7 +24,7 @@ public class MemberController {
     /**
      * 회원가입
      */
-    @PostMapping("/add")
+    @PostMapping("/signup")
     public String signUp(@RequestBody UserDTO userDTO, HttpServletResponse response) {
         boolean result = database.save(userDTO);
 

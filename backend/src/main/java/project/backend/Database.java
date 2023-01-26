@@ -38,7 +38,6 @@ public class Database {
         Optional<User> result = findAll().stream()
                 .filter(user -> user.getUserId().equals(userDTO.getUserId()))
                 .findAny();
-
         if(result.isPresent()) { //회원이 존재하는 경우 false 리턴
             return false;
         }

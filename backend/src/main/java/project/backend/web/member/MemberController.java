@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.backend.DTO.MemberDTO;
+import project.backend.DTO.ResultDTO;
 import project.backend.DTO.UserDTO;
 import project.backend.Database;
 import project.backend.domain.data.User;
@@ -25,16 +26,15 @@ public class MemberController {
      * 회원가입
      */
     @PostMapping("/signup")
-    public String signUp(@RequestBody UserDTO userDTO, HttpServletResponse response) {
+    public ResponseEntity<ResultDTO> signUp(@RequestBody UserDTO userDTO) {
+        log.info("sign up executed");
         boolean result = database.save(userDTO);
-
+        log.info("sign up result : {}", result);
         if(result == true) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            return "ok";
+            return new ResponseEntity<>(new ResultDTO("Sign Up Succeed"), HttpStatus.OK);
         }
         else {
-            response.setStatus(401);
-            return "User ID already existed";
+            return new ResponseEntity<>(new ResultDTO("User ID already existed"), HttpStatus.UNAUTHORIZED);
         }
     }
 

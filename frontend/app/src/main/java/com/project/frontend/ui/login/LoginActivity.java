@@ -1,5 +1,6 @@
 package com.project.frontend.ui.login;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.project.frontend.DTO.LoginDTO;
 import com.project.frontend.DTO.MemberDTO;
+import com.project.frontend.MainActivity;
 import com.project.frontend.R;
+import com.project.frontend.ui.signup.SignUpActivity;
 import com.project.frontend.web.RetrofitClient;
 import com.project.frontend.web.RetrofitService;
 import retrofit2.Call;
@@ -25,9 +28,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Log.d("TEST", "TEST");
+
         //Button list
         Button loginButton = findViewById(R.id.loginButton);
+        Button signUpButton = findViewById(R.id.signupButton);
         EditText userId = findViewById(R.id.userId);
         EditText password = findViewById(R.id.password);
 
@@ -49,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                         if(response.isSuccessful()) {
                             MemberDTO memberDTO = response.body();
                             Log.d("TEST", memberDTO.toString());
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
                         }
                         else {
 
@@ -59,6 +65,14 @@ public class LoginActivity extends AppCompatActivity {
                         Log.e("TEST", "Login Failed");
                     }
                 });
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
             }
         });
     }

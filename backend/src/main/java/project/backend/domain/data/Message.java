@@ -1,4 +1,4 @@
-package project.backend.data;
+package project.backend.domain.data;
 
 import lombok.Getter;
 import lombok.Setter;

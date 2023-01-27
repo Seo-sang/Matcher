@@ -1,6 +1,7 @@
 package project.backend.DTO;
 
 import lombok.Data;
+import project.backend.domain.data.Member;
 import project.backend.domain.data.User;
 
 @Data
@@ -19,5 +20,11 @@ public class MemberDTO {
         this.userId = user.getUserId();
         this.nickname = user.getNickname();
         this.introduction = user.getIntroduction();
+    }
+
+    public MemberDTO(Member member) {
+        this.userId = member.getUserId();
+        this.nickname = member.getNickname();
+        this.introduction = member.getIntroduction();
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import project.backend.DTO.MemberDTO;
 import project.backend.DTO.UserDTO;
 import project.backend.domain.data.Chat;
+import project.backend.domain.data.Member;
 import project.backend.domain.data.Message;
 import project.backend.domain.data.User;
 
@@ -17,20 +18,27 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Database {
     /**
      * <userID, User>
+     * <userID, Member>
      * <chatId, Chat>
      * <userId, Chat>
      * <chatId, Array>
      */
     private static Map<String, User> users = new ConcurrentHashMap<>();
+    private static Map<String, Member> friends = new ConcurrentHashMap<>();
     private static Map<String, Chat> chats = new ConcurrentHashMap<>();
     private static Map<String, Chat> userChats = new ConcurrentHashMap<>();
-    private static Map<String, ArrayList<Message>> messages = new HashMap<>();
+    private static Map<String, ArrayList<Message>> messages = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void init() {
         users.put("userA", new User("userA", "userA", "userA", "hello, userA"));
         users.put("userB", new User("userB", "userB", "userB", "hello, userB"));
         users.put("userC", new User("userC", "userC", "userC", "hello, userC"));
+
+        friends.put("userA", new Member("friendA", "friendA", "hello, friendA"));
+        friends.put("userA", new Member("friendB", "friendB", "hello, friendB"));
+        friends.put("userA", new Member("friendC", "friendC", "hello, friendC"));
+        friends.put("userA", new Member("friendD", "friendD", "hello, friendD"));
     }
 
     public boolean save(UserDTO userDTO) {

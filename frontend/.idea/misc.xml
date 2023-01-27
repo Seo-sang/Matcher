@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/chatting_icon.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.41458333333333336" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.41458333333333336" />
+        <entry key="app/src/main/res/layout/activity_chatting.xml" value="0.2980072463768116" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2980072463768116" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.2980072463768116" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2980072463768116" />

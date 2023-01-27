@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.project.frontend.DTO.LoginDTO;
 import com.project.frontend.DTO.MemberDTO;
-import com.project.frontend.MainActivity;
+import com.project.frontend.ui.MainActivity;
 import com.project.frontend.R;
 import com.project.frontend.ui.signup.SignUpActivity;
 import com.project.frontend.web.RetrofitClient;

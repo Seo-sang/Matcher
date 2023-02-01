@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import project.backend.DTO.FriendDTO;
 import project.backend.DTO.MemberDTO;
 import project.backend.DTO.ResultDTO;
 import project.backend.DTO.UserDTO;
@@ -57,4 +58,16 @@ public class MemberController {
 
     }
 
+    /**
+     * 친구 찾기
+     */
+    @GetMapping("/{userId}/friends")
+    public ResponseEntity<FriendDTO> getFriends(@PathVariable String userId) {
+        FriendDTO result = database.getFriends(userId);
+
+        if(result == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

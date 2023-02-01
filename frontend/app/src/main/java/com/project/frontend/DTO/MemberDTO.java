@@ -18,4 +18,24 @@ public class MemberDTO {
         this.introduction = introduction;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+                "userId='" + userId + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", introduction='" + introduction + '\'' +
+                '}';
+    }
 }

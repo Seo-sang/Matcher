@@ -10,23 +10,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import com.project.frontend.DTO.FriendDTO;
 import com.project.frontend.DTO.MemberDTO;
 import com.project.frontend.R;
 import com.project.frontend.ui.MainActivity;
 import com.project.frontend.ui.item.ListViewItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    private ArrayList<ListViewItem> listViewItems = new ArrayList<ListViewItem>();
-    private Context mainContext;
-    private Activity activity;
-    //임시 생성자
-    public ListViewAdapter() {
-        for(int i = 1; i < 30; i++) {
-            listViewItems.add(new ListViewItem("user" + i, "user" + i, "hello, user" + i));
-        }
+    private ArrayList<ListViewItem> listViewItems;
+
+
+    public ListViewAdapter(ArrayList<ListViewItem> listViewItems) {
+        this.listViewItems = listViewItems;
     }
 
     @Override
@@ -65,5 +64,11 @@ public class ListViewAdapter extends BaseAdapter {
         introduction.setText(listViewItem.getIntroduction());
 
         return view;
+    }
+
+    public void setListViewItems(List<MemberDTO> friends) {
+        for (MemberDTO friend : friends) {
+            listViewItems.add(new ListViewItem(friend));
+        }
     }
 }

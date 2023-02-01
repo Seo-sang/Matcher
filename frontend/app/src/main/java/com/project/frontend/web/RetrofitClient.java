@@ -11,7 +11,7 @@ public class RetrofitClient {
     private static final RetrofitClient instance = new RetrofitClient();
     private static RetrofitService retrofitService;
 
-    private static final String baseUrl = "https://6e4e-59-15-25-132.ngrok.io";
+    private static final String baseUrl = "https://d183-59-15-25-132.ngrok.io";
 
     public static String getBaseUrl() {
         return baseUrl;

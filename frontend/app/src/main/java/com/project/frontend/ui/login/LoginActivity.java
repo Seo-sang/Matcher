@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.project.frontend.DTO.LoginDTO;
 import com.project.frontend.DTO.MemberDTO;
+import com.project.frontend.identification.Identification;
 import com.project.frontend.ui.MainActivity;
 import com.project.frontend.R;
 import com.project.frontend.ui.signup.SignUpActivity;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //    private RetrofitClient retrofitClient = RetrofitClient.getInstance();
     private RetrofitService retrofitService = RetrofitClient.getRetrofitService();
+    private Identification identification = Identification.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<MemberDTO> call, Response<MemberDTO> response) {
                         if(response.isSuccessful()) {
                             MemberDTO memberDTO = response.body();
+                            identification.init(memberDTO);
                             Log.d("TEST", memberDTO.toString());
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);

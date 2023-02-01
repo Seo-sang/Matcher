@@ -2,6 +2,7 @@ package project.backend;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import project.backend.DTO.FriendDTO;
 import project.backend.DTO.MemberDTO;
 import project.backend.DTO.UserDTO;
 import project.backend.domain.data.Chat;
@@ -24,7 +25,7 @@ public class Database {
      * <chatId, Array>
      */
     private static Map<String, User> users = new ConcurrentHashMap<>();
-    private static Map<String, Member> friends = new ConcurrentHashMap<>();
+    private static Map<String, List<Member>> friends = new ConcurrentHashMap<>();
     private static Map<String, Chat> chats = new ConcurrentHashMap<>();
     private static Map<String, Chat> userChats = new ConcurrentHashMap<>();
     private static Map<String, ArrayList<Message>> messages = new ConcurrentHashMap<>();
@@ -35,10 +36,21 @@ public class Database {
         users.put("userB", new User("userB", "userB", "userB", "hello, userB"));
         users.put("userC", new User("userC", "userC", "userC", "hello, userC"));
 
-        friends.put("userA", new Member("friendA", "friendA", "hello, friendA"));
-        friends.put("userA", new Member("friendB", "friendB", "hello, friendB"));
-        friends.put("userA", new Member("friendC", "friendC", "hello, friendC"));
-        friends.put("userA", new Member("friendD", "friendD", "hello, friendD"));
+        friends.put("userA", new ArrayList<>());
+        friends.get("userA").add(new Member("friendA", "friendA", "hello, friendA"));
+        friends.get("userA").add(new Member("friendB", "friendB", "hello, friendB"));
+        friends.get("userA").add(new Member("friendC", "friendC", "hello, friendC"));
+        friends.get("userA").add(new Member("friendD", "friendD", "hello, friendD"));
+    }
+
+    public FriendDTO getFriends(String userId) {
+        List<Member> members = friends.get(userId);
+        if(members == null) return null;
+        List<MemberDTO> ret = new ArrayList<>();
+        for (Member member : members) {
+            ret.add(new MemberDTO(member));
+        }
+        return new FriendDTO(ret);
     }
 
     public boolean save(UserDTO userDTO) {

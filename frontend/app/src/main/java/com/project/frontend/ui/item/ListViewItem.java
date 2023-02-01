@@ -1,6 +1,7 @@
 package com.project.frontend.ui.item;
 
 import com.google.gson.annotations.SerializedName;
+import com.project.frontend.DTO.MemberDTO;
 
 public class ListViewItem {
     String userId;
@@ -37,5 +38,11 @@ public class ListViewItem {
         this.userId = userId;
         this.nickname = nickname;
         this.introduction = introduction;
+    }
+
+    public ListViewItem(MemberDTO memberDTO) {
+        this.userId = memberDTO.getUserId();
+        this.nickname = memberDTO.getNickname();
+        this.introduction = memberDTO.getIntroduction();
     }
 }
